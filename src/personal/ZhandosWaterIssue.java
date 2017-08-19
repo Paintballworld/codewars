@@ -31,7 +31,8 @@ public class ZhandosWaterIssue {
                     // Значит закрыли резервуар, суммируем объем
                     subVolume += getWaterVolume(ground, lBorder, rBorder);
                     left = true;
-                    lBorder = i;
+                    lBorder = i - 1;
+                    i--;
                 }
                 rBorder = i;
             }
@@ -84,7 +85,8 @@ public class ZhandosWaterIssue {
 //        pool = new int[]{3, 2, 0, 3, 4, 0, 0, 1, 4, 2, 2};
 //        pool = new int[]{3, 2, 4, 3, 3, 1, 2, 2, 2, 1, 3};
 //        pool = new int[]{3, 1, 2, 1, 1, 3, 0, 4, 0, 4, 0};
-        pool = new int[]{4, 4, 0, 3, 2, 2, 2, 1, 2, 0, 4};
+//        pool = new int[]{4, 4, 0, 3, 2, 2, 2, 1, 2, 0, 4};
+        pool = new int[]{1, 0, 4, 3, 5, 1, 7, 1, 3, 2, 4, 0, 2};
         visualizationOf(pool).forEach(System.out::print);
         System.out.println(waterVolume(pool));
     }
