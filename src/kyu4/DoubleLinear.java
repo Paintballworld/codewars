@@ -1,3 +1,5 @@
+package kyu4;
+
 import java.util.*;
 
 class DoubleLinear {
