@@ -1,8 +1,5 @@
 package kyu4.texas_holdem;
 
-/**
- * Created by me on 19.08.17.
- */
 public class TestClass {
 
     private PokerHand.Result loss = PokerHand.Result.LOSS;
@@ -13,7 +10,7 @@ public class TestClass {
         new TestClass().PokerHandRankingTest();
     }
 
-    public void PokerHandRankingTest()
+    private void PokerHandRankingTest()
     {
         Test("Highest straight flush wins",        loss, "2H 3H 4H 5H 6H", "KS AS TS QS JS");
         Test("Straight flush wins of 4 of a kind", win,  "2H 3H 4H 5H 6H", "AS AD AC AH JD");
@@ -37,12 +34,16 @@ public class TestClass {
     {
         PokerHand player = new PokerHand(playerHand);
         PokerHand opponent = new PokerHand(opponentHand);
-        assertEquals(description + ":", expected, player.compareWith(opponent));
+        PokerHand.Result result = player.compareWith(opponent);
+        if (!assertEquals(description + ":", expected, result)) {
+            System.out.println("incorrect result: <" + result + "> " + description);
+            System.out.println("My :" + player.cards + ":" + player.hand +
+                    ", Opponent :" + opponent.cards  + ":" + opponent.hand);
+        }
     }
 
-    private void assertEquals(String s, PokerHand.Result expected, PokerHand.Result result) {
-        if (expected != result)
-            throw new AssertionError(s);
+    private boolean assertEquals(String s, PokerHand.Result expected, PokerHand.Result result) {
+        return expected == result;
     }
 
 }
