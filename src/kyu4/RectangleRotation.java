@@ -3,17 +3,25 @@ package kyu4;
 public class RectangleRotation {
 
     static int rectangleRotation(final int a, final int b) {
-        double h1 = Math.sqrt(sqr(a) * 2);
-        double h2 = Math.sqrt(sqr(b) / 2);
-        System.out.println(String.format("h1:%7.4f, h2:%7.4f", h1, h2));
-        return ((int) (h1 * h2));
+        int ha = (int) ((a / Math.sqrt(2)) + 1);
+        int hb = (int) ((b / Math.sqrt(2)) + 1);
+        if (halfDividedByTwo(ha) && !halfDividedByTwo(hb))
+            return (ha * (hb - 1) + ((ha - 1) * hb));
+        if (halfDividedByTwo(hb) && !halfDividedByTwo(ha))
+            return ((ha - 1) * hb) + (ha * (hb -1));
+        return (ha-- * hb--)+(ha * hb);
     }
 
-    private static int sqr(int val) {
-        return val * val;
+    private static boolean halfDividedByTwo(int a) {
+        return a % 2 == 0 && (a / 2) % 2 == 0;
     }
 
     public static void main(String[] args) {
+        test();
+    }
+
+    private static void test() {
+        System.out.println(halfDividedByTwo(5));
         System.out.println("23: " + rectangleRotation(6, 4));
         System.out.println("65: " + rectangleRotation(30, 2));
         System.out.println("49: " + rectangleRotation(8, 6));
