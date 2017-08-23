@@ -49,12 +49,14 @@ public class ClosestWeight {
     }
 
     private static boolean diffIsSmaller(List<Node> collect, int i, int index) {
-        int wd1 = Math.abs(collect.get(i).weight - collect.get(i+1).weight);
-        int wd2 = Math.abs(collect.get(index).weight - collect.get(index+1).weight);
-        int id1 = Math.abs(collect.get(i).index - collect.get(i+1).index);
-        int id2 = Math.abs(collect.get(index).index - collect.get(index+1).index);
+        int wd1 = Math.abs(collect.get(i + 1).weight - collect.get(i).weight);
+        int wd2 = Math.abs(collect.get(index + 1).weight - collect.get(index).weight);
+        int id1 = Math.abs(collect.get(i + 1).index);
+        int id2 = Math.abs(collect.get(index + 1).index);
         if (wd1 != wd2)
             return wd1 < wd2;
+        if (collect.get(i).weight != collect.get(index).weight)
+            return collect.get(i).weight < collect.get(index).weight;
         return id1 < id2;
     }
 
@@ -79,9 +81,10 @@ public class ClosestWeight {
     private static void testing(String actual, String expected) {
         System.out.println("\nActual:" + actual + "\nExpect:" + expected);
         if (!Objects.equals(expected, actual))
-            System.out.println("What that?!?");
+            throw new RuntimeException("WRONG!");
+            /*System.out.println("What that?!?");
         else
-            System.out.println("That's right!");
+            System.out.println("That's right!");*/
     }
 
     public void test() {

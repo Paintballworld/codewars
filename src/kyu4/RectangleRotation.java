@@ -5,15 +5,15 @@ public class RectangleRotation {
     static int rectangleRotation(final int a, final int b) {
         int ha = (int) ((a / Math.sqrt(2)) + 1);
         int hb = (int) ((b / Math.sqrt(2)) + 1);
-        if (halfDividedByTwo(ha) && !halfDividedByTwo(hb))
+        if (needToResizeBy(ha) && !needToResizeBy(hb))
             return (ha * (hb - 1) + ((ha - 1) * hb));
-        if (halfDividedByTwo(hb) && !halfDividedByTwo(ha))
+        if (needToResizeBy(hb) && !needToResizeBy(ha))
             return ((ha - 1) * hb) + (ha * (hb -1));
         return (ha-- * hb--)+(ha * hb);
     }
 
-    private static boolean halfDividedByTwo(int a) {
-        return a % 2 == 0 && (a / 2) % 2 == 0;
+    private static boolean needToResizeBy(int a) {
+        return a % 2 == 0;
     }
 
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class RectangleRotation {
     }
 
     private static void test() {
-        System.out.println(halfDividedByTwo(5));
+        System.out.println(needToResizeBy(5));
         System.out.println("23: " + rectangleRotation(6, 4));
         System.out.println("65: " + rectangleRotation(30, 2));
         System.out.println("49: " + rectangleRotation(8, 6));
